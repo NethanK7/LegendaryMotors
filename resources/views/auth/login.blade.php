@@ -3,9 +3,9 @@
         <!-- Left Side: Cinematic Image -->
         <div class="hidden lg:block relative overflow-hidden group">
             <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[2000ms] group-hover:scale-105" 
-                 style="background-image: url('{{ asset('images/brabus/supercar_seed.png') }}');">
+                 style="background-image: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=2664&auto=format&fit=crop');">
             </div>
-            <div class="absolute inset-0 bg-black/30 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-black/40 bg-gradient-to-t from-black via-transparent to-transparent"></div>
             
             <div class="absolute bottom-12 left-12 right-12 text-white">
                 <p class="text-[var(--color-accent)] font-bold tracking-[0.3em] uppercase text-xs mb-4">Legendary Motors</p>
@@ -19,7 +19,7 @@
         </div>
 
         <!-- Right Side: Login Form -->
-        <div class="flex items-center justify-center p-8 lg:p-24 bg-[#050505] relative">
+        <div class="flex items-center justify-center p-8 lg:p-24 bg-[#050505] relative pt-32 lg:pt-24">
              <div class="w-full max-w-md">
                 <!-- Header -->
                 <div class="mb-12">

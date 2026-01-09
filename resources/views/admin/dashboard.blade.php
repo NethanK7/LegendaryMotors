@@ -6,12 +6,13 @@
             <div class="flex flex-col md:flex-row items-end justify-between mb-16 border-b border-white/10 pb-8">
                 <div>
                      <div class="flex items-center gap-3 mb-2">
-                        <span class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></span>
-                        <span class="text-[var(--color-accent)] font-bold tracking-[0.3em] uppercase text-xs">Live Command Center</span>
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#00ff00]"></span>
+                        <span class="text-[var(--color-accent)] font-bold tracking-[0.3em] uppercase text-[10px]">Command Center Active</span>
                      </div>
-                    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">
-                        Admin Overview
+                    <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-1">
+                        Welcome Back, {{ Auth::user()->name }}
                     </h1>
+                    <p class="text-gray-500 font-bold uppercase text-xs tracking-widest">System Operational • {{ now()->format('F j, Y') }}</p>
                 </div>
                 <div class="flex gap-4 mt-8 md:mt-0">
                     <a href="{{ route('admin.cars.index') }}" class="group relative bg-[#111] border border-white/20 text-white px-8 py-4 overflow-hidden transition-all hover:bg-white hover:text-black hover:border-white">
@@ -111,20 +112,24 @@
                                 @foreach($recent_allocations as $allocation)
                                 <tr class="group hover:bg-white/5 transition-colors">
                                     <td class="py-4 px-6">
-                                        <div class="font-bold text-white">{{ $allocation->user->name }}</div>
-                                        <div class="text-[9px] text-gray-500 mt-1">{{ $allocation->user->email }}</div>
+                                        <div class="font-bold text-white">{{ $allocation->user->name ?? 'Unknown User' }}</div>
+                                        <div class="text-[9px] text-gray-500 mt-1">{{ $allocation->user->email ?? 'No Email' }}</div>
                                     </td>
                                     <td class="py-4 px-6">
                                         <div class="flex items-center gap-3">
-                                            @if($allocation->car->image_url)
-                                                <div class="w-12 h-8 bg-gray-800 rounded-sm overflow-hidden">
-                                                    <img src="{{ Str::startsWith($allocation->car->image_url, 'http') ? $allocation->car->image_url : asset($allocation->car->image_url) }}" class="w-full h-full object-cover">
+                                            @if($allocation->car)
+                                                @if($allocation->car->image_url)
+                                                    <div class="w-12 h-8 bg-gray-800 rounded-sm overflow-hidden">
+                                                        <img src="{{ Str::startsWith($allocation->car->image_url, 'http') ? $allocation->car->image_url : asset($allocation->car->image_url) }}" class="w-full h-full object-cover">
+                                                    </div>
+                                                @endif
+                                                <div>
+                                                    <span class="block font-bold text-white">{{ $allocation->car->model }}</span>
+                                                    <span class="block text-[9px] text-[var(--color-accent)] font-mono">{{ $allocation->configuration['color'] ?? 'Custom' }}</span>
                                                 </div>
+                                            @else
+                                                <div class="text-gray-500 italic">Car Removed</div>
                                             @endif
-                                            <div>
-                                                <span class="block font-bold text-white">{{ $allocation->car->model }}</span>
-                                                <span class="block text-[9px] text-[var(--color-accent)] font-mono">{{ $allocation->configuration['color'] ?? 'Custom' }}</span>
-                                            </div>
                                         </div>
                                     </td>
                                     <td class="py-4 px-6 text-gray-400 font-mono">{{ $allocation->created_at->format('M d, H:i') }}</td>
@@ -151,6 +156,28 @@
 
                 <!-- Admin Tools Sidebar -->
                 <div class="space-y-6">
+                    <!-- Recent Messages -->
+                    <div class="bg-[#0a0a0a] border border-white/10 p-6">
+                         <div class="flex justify-between items-center mb-4">
+                             <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em]">Incoming Messages</h4>
+                             <span class="text-[9px] bg-[var(--color-accent)] text-white px-2 py-0.5 font-bold rounded-sm">{{ $recent_messages->count() }}</span>
+                         </div>
+                         <div class="space-y-4">
+                            @forelse($recent_messages as $message)
+                             <div class="border-b border-white/5 pb-4 last:border-0 last:pb-0 group">
+                                 <div class="flex justify-between mb-1">
+                                     <span class="text-xs font-bold text-white group-hover:text-[var(--color-accent)] transition-colors">{{ $message->first_name }} {{ $message->last_name }}</span>
+                                     <span class="text-[9px] text-gray-600">{{ $message->created_at->diffForHumans(null, true) }}</span>
+                                 </div>
+                                 <p class="text-[10px] text-gray-400 font-bold mb-1">{{ Str::limit($message->subject, 20) }}</p>
+                                 <p class="text-[10px] text-gray-600 leading-relaxed">{{ Str::limit($message->message, 40) }}</p>
+                             </div>
+                            @empty
+                             <p class="text-xs text-center text-gray-600 py-4">No new messages</p>
+                            @endforelse
+                         </div>
+                    </div>
+
                     <!-- System Status -->
                     <div class="bg-[#0a0a0a] border border-white/10 p-6">
                          <h4 class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">System Status</h4>

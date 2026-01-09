@@ -65,7 +65,7 @@ class CarConfigurator extends Component
             'total_price' => $this->total
         ]);
 
-        return redirect()->route('payment.checkout');
+        return redirect()->route('checkout');
     }
 
     public function render()

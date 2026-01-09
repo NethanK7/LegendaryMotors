@@ -21,8 +21,8 @@ class ContactController extends Controller
             'message' => 'required|string|max:2000',
         ]);
 
-        // Logic to send email would go here
-        // Mail::to('admin@legendarymotors.com')->send(new ContactFormMail($validated));
+        // Create Contact Record
+        \App\Models\Contact::create($validated);
 
         return back()->with('status', 'Thank you for your inquiry. Our concierge team will reach out shortly.');
     }

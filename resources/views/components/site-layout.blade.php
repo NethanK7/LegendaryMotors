@@ -45,9 +45,11 @@
                             <a href="{{ route('dashboard') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('dashboard') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 My Garage
                             </a>
+                            @if(!Auth::user()->is_admin)
                             <a href="{{ route('favorites.index') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('favorites.index') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 Saved Collection
                             </a>
+                            @endif
                             <a href="{{ route('profile.show') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('profile.show') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 Account Settings
                             </a>

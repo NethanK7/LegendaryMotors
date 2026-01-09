@@ -94,17 +94,20 @@
                         <div class="grid grid-cols-2 gap-8 mb-8">
                              <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">First Name</label>
-                                <input type="text" name="first_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="NAME">
+                                <input type="text" name="first_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="NAME"
+                                value="{{ Auth::check() ? explode(' ', Auth::user()->name)[0] : old('first_name') }}">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Last Name</label>
-                                <input type="text" name="last_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="SURNAME">
+                                <input type="text" name="last_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="SURNAME"
+                                value="{{ Auth::check() && str_contains(Auth::user()->name, ' ') ? explode(' ', Auth::user()->name, 2)[1] : old('last_name') }}">
                             </div>
                         </div>
 
                         <div class="mb-8">
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="EMAIL@EXAMPLE.COM">
+                            <input type="email" name="email" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="EMAIL@EXAMPLE.COM"
+                            value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
                         </div>
 
                         <div class="mb-12">

@@ -18,53 +18,60 @@
                         <!-- Brand -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Brand</label>
-                            <input type="text" name="brand" value="{{ old('brand', $car->brand) }}" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold" required>
+                            <input type="text" name="brand" value="{{ old('brand', $car->brand) }}" class="w-full bg-black border @error('brand') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold" required>
+                            @error('brand') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
                         
                         <!-- Model -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Model</label>
-                            <input type="text" name="model" value="{{ old('model', $car->model) }}" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold" required>
+                            <input type="text" name="model" value="{{ old('model', $car->model) }}" class="w-full bg-black border @error('model') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold" required>
+                            @error('model') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Year -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Year</label>
-                            <input type="number" name="year" value="{{ old('year', $car->year) }}" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 font-tech" required>
+                            <input type="number" name="year" value="{{ old('year', $car->year) }}" class="w-full bg-black border @error('year') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 font-tech" required>
+                            @error('year') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Price -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Price ($)</label>
-                            <input type="number" step="0.01" name="price" value="{{ old('price', $car->price) }}" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 font-tech" required>
+                            <input type="number" step="0.01" name="price" value="{{ old('price', $car->price) }}" class="w-full bg-black border @error('price') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 font-tech" required>
+                            @error('price') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Type -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Category</label>
-                            <select name="category" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
-                                <option value="supercar" {{ $car->category == 'supercar' ? 'selected' : '' }}>Supercar</option>
-                                <option value="suv" {{ $car->category == 'suv' ? 'selected' : '' }}>SUV</option>
-                                <option value="luxury" {{ $car->category == 'luxury' ? 'selected' : '' }}>Luxury</option>
-                                <option value="motorbike" {{ $car->category == 'motorbike' ? 'selected' : '' }}>Motorbike</option>
+                            <select name="category" class="w-full bg-black border @error('category') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
+                                <option value="supercar" {{ old('category', $car->category) == 'supercar' ? 'selected' : '' }}>Supercar</option>
+                                <option value="suv" {{ old('category', $car->category) == 'suv' ? 'selected' : '' }}>SUV</option>
+                                <option value="luxury" {{ old('category', $car->category) == 'luxury' ? 'selected' : '' }}>Luxury</option>
+                                <option value="motorbike" {{ old('category', $car->category) == 'motorbike' ? 'selected' : '' }}>Motorbike</option>
                             </select>
+                            @error('category') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
 
                         <!-- Status -->
                         <div>
                             <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Status</label>
-                            <select name="status" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
-                                <option value="available" {{ $car->status == 'available' ? 'selected' : '' }}>Available</option>
-                                <option value="reserved" {{ $car->status == 'reserved' ? 'selected' : '' }}>Reserved</option>
-                                <option value="sold" {{ $car->status == 'sold' ? 'selected' : '' }}>Sold</option>
+                            <select name="status" class="w-full bg-black border @error('status') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
+                                <option value="available" {{ old('status', $car->status) == 'available' ? 'selected' : '' }}>Available</option>
+                                <option value="reserved" {{ old('status', $car->status) == 'reserved' ? 'selected' : '' }}>Reserved</option>
+                                <option value="sold" {{ old('status', $car->status) == 'sold' ? 'selected' : '' }}>Sold</option>
                             </select>
+                            @error('status') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
                     <!-- Image URL -->
                     <div>
                         <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Image URL (Asset Path or External URL)</label>
-                        <input type="text" name="image_url" value="{{ old('image_url', $car->image_url) }}" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 text-sm" placeholder="images/brabus/..." required>
+                        <input type="text" name="image_url" value="{{ old('image_url', $car->image_url) }}" class="w-full bg-black border @error('image_url') border-red-500 @else border-white/10 @enderror px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 text-sm" placeholder="images/brabus/..." required>
+                        @error('image_url') <span class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1 block">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="border-t border-white/10 pt-6 mt-6">

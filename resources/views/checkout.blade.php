@@ -37,17 +37,20 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">First Name</label>
-                                    <input type="text" name="first_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER FIRST NAME">
+                                    <input type="text" name="first_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER FIRST NAME"
+                                    value="{{ Auth::check() ? explode(' ', Auth::user()->name)[0] : old('first_name') }}">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Last Name</label>
-                                    <input type="text" name="last_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER LAST NAME">
+                                    <input type="text" name="last_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER LAST NAME"
+                                    value="{{ Auth::check() && str_contains(Auth::user()->name, ' ') ? explode(' ', Auth::user()->name, 2)[1] : old('last_name') }}">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Email Address</label>
-                                <input type="email" name="email" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER OFFICIAL EMAIL">
+                                <input type="email" name="email" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER OFFICIAL EMAIL"
+                                value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
                             </div>
 
                             <div>

@@ -23,7 +23,8 @@ class DashboardController extends Controller
         ];
 
         $recent_allocations = Allocation::with(['user', 'car'])->latest()->take(5)->get();
+        $recent_messages = \App\Models\Contact::latest()->take(5)->get();
 
-        return view('admin.dashboard', compact('stats', 'recent_allocations'));
+        return view('admin.dashboard', compact('stats', 'recent_allocations', 'recent_messages'));
     }
 }
