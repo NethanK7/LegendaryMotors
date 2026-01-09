@@ -1,5 +1,5 @@
 <x-site-layout>
-    <div class="pt-32 pb-12 bg-black min-h-screen text-white">
+    <div class="pt-48 pb-12 bg-black min-h-screen text-white" style="padding-top: 150px;">
         <div class="container mx-auto px-6">
             
             <!-- Admin Header -->

@@ -117,15 +117,21 @@
                     </div>
                 </div>
                 
-                <button wire:click="reserve" 
-                        wire:loading.attr="disabled"
-                        class="w-full py-5 bg-white text-black font-black uppercase tracking-[0.2em] border border-white hover:bg-transparent hover:text-white transition-all duration-300 rounded-sm relative overflow-hidden group shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-none">
-                    <span class="relative z-10 flex items-center justify-center gap-2" wire:loading.remove>
-                        <span>Reserve Build</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </span>
-                    <span class="relative z-10" wire:loading>Processing Request...</span>
-                </button>
+                @if(auth()->check() && auth()->user()->is_admin)
+                    <div class="w-full py-5 bg-white/5 border border-white/10 text-gray-500 font-bold text-center uppercase text-xs tracking-[0.2em] rounded-sm cursor-not-allowed">
+                        Configuration Disabled for Admin
+                    </div>
+                @else
+                    <button wire:click="reserve" 
+                            wire:loading.attr="disabled"
+                            class="w-full py-5 bg-white text-black font-black uppercase tracking-[0.2em] border border-white hover:bg-transparent hover:text-white transition-all duration-300 rounded-sm relative overflow-hidden group shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-none">
+                        <span class="relative z-10 flex items-center justify-center gap-2" wire:loading.remove>
+                            <span>Reserve Build</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </span>
+                        <span class="relative z-10" wire:loading>Processing Request...</span>
+                    </button>
+                @endif
                 <p class="text-[10px] text-center text-gray-500 mt-6 uppercase tracking-widest font-medium flex items-center justify-center gap-2">
                     <svg class="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     Secure transaction via Stripe • 100% Refundable Deposit

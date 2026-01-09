@@ -38,22 +38,22 @@
                         </button>
                         <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-[#111] border border-gray-100 dark:border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 z-50">
                             @if(Auth::user()->is_admin)
-                                <a href="{{ route('admin.dashboard') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)] transition-colors text-black dark:text-white border-b border-gray-100 dark:border-white/5">
+                                <a href="{{ route('admin.dashboard') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('admin.dashboard') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                     Admin Dashboard
                                 </a>
                             @endif
-                            <a href="{{ route('dashboard') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)] transition-colors text-black dark:text-white border-b border-gray-100 dark:border-white/5">
+                            <a href="{{ route('dashboard') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('dashboard') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 My Garage
                             </a>
-                            <a href="{{ route('favorites.index') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)] transition-colors text-black dark:text-white border-b border-gray-100 dark:border-white/5">
+                            <a href="{{ route('favorites.index') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('favorites.index') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 Saved Collection
                             </a>
-                            <a href="{{ route('profile.show') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)] transition-colors text-black dark:text-white border-b border-gray-100 dark:border-white/5">
+                            <a href="{{ route('profile.show') }}" class="block px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors border-b border-gray-100 dark:border-white/5 {{ request()->routeIs('profile.show') ? 'bg-gray-50 dark:bg-white/10 text-[var(--color-accent)]' : 'bg-transparent text-black dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:text-[var(--color-accent)]' }}">
                                 Account Settings
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-white/5 hover:text-red-500 transition-colors text-gray-500 dark:text-gray-400">
+                                <button type="submit" class="block w-full text-left px-6 py-4 text-xs font-bold uppercase tracking-widest transition-colors bg-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-red-500">
                                     Log Out
                                 </button>
                             </form>

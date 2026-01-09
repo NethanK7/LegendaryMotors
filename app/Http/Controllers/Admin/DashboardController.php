@@ -16,7 +16,7 @@ class DashboardController extends Controller
             'total_cars' => Car::count(),
             'total_users' => User::count(),
             'total_allocations' => Allocation::count(),
-            'revenue' => Allocation::where('status', 'paid')
+            'revenue' => Allocation::whereIn('allocations.status', ['paid', 'reserved'])
                 ->join('cars', 'allocations.car_id', '=', 'cars.id')
                 ->sum('cars.price') ?? 0,
         ];

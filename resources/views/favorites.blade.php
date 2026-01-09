@@ -1,5 +1,5 @@
 <x-site-layout>
-    <div class="pt-32 pb-12 bg-black min-h-screen">
+    <div class="pt-48 pb-12 bg-black min-h-screen" style="padding-top: 150px;">
         <div class="container mx-auto px-6">
             <div class="flex items-end justify-between mb-12 border-l-4 border-[var(--color-accent)] pl-6">
                 <div>

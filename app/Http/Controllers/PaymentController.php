@@ -18,6 +18,10 @@ class PaymentController extends Controller
             return redirect()->route('login');
         }
 
+        if (auth()->user()->is_admin) {
+            abort(403, 'Admins cannot perform purchases.');
+        }
+
         $config = Session::get('reservation_config');
 
         if (!$config) {

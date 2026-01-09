@@ -136,7 +136,7 @@
 
                         <!-- CTA Button -->
                         <a href="{{ route('cars.show', $car->id) }}" class="flex items-center justify-between w-full bg-white text-black px-6 py-4 font-black uppercase text-xs tracking-[0.2em] hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 clip-angle group-hover:translate-x-1 group-hover:-translate-y-1">
-                            <span>Configure</span>
+                            <span>{{ auth()->user()?->is_admin ? 'View Details' : 'Configure' }}</span>
                             <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>

@@ -1,5 +1,5 @@
 <x-site-layout>
-    <div class="pt-32 pb-12 bg-black min-h-screen text-white">
+    <div class="pt-48 pb-12 bg-black min-h-screen text-white" style="padding-top: 150px;">
         <div class="container mx-auto px-6">
             
             <div class="flex items-center justify-between mb-8">
@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="p-6 text-gray-400 capitalize">{{ $car->type }}</td>
+                            <td class="p-6 text-gray-400 capitalize">{{ $car->category }}</td>
                             <td class="p-6 font-tech font-bold">${{ number_format($car->price) }}</td>
                             <td class="p-6">
                                 <span class="bg-white/10 px-2 py-1 text-[10px] uppercase font-bold tracking-wider {{ $car->status === 'available' ? 'text-green-400' : 'text-gray-400' }}">

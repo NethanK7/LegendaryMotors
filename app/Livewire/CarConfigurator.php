@@ -52,6 +52,10 @@ class CarConfigurator extends Component
 
     public function reserve()
     {
+        if (auth()->check() && auth()->user()->is_admin) {
+            abort(403, 'Admins cannot perform purchases.');
+        }
+
         // Store configuration in session for the PaymentController
         Session::put('reservation_config', [
             'car_id' => $this->car->id,

@@ -26,7 +26,7 @@ class CarController extends Controller
             'model' => 'required|string|max:255',
             'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
             'price' => 'required|numeric|min:0',
-            'type' => 'required|string|in:supercar,suv,luxury,motorbike',
+            'category' => 'required|string|in:supercar,suv,luxury,motorbike',
             'status' => 'required|string|in:available,reserved,sold',
             'image_url' => 'required|string', // Simple URL input for now
         ]);
@@ -55,7 +55,7 @@ class CarController extends Controller
             'model' => 'required|string|max:255',
             'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
             'price' => 'required|numeric|min:0',
-            'type' => 'required|string|in:supercar,suv,luxury,motorbike',
+            'category' => 'required|string|in:supercar,suv,luxury,motorbike',
             'status' => 'required|string|in:available,reserved,sold',
             'image_url' => 'required|string',
         ]);

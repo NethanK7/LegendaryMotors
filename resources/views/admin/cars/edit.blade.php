@@ -1,5 +1,5 @@
 <x-site-layout>
-    <div class="pt-32 pb-12 bg-black min-h-screen text-white">
+    <div class="pt-48 pb-12 bg-black min-h-screen text-white">
         <div class="container mx-auto px-6 max-w-4xl">
             
             <div class="flex items-center justify-between mb-8">
@@ -41,12 +41,12 @@
 
                         <!-- Type -->
                         <div>
-                            <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Type</label>
-                            <select name="type" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
-                                <option value="supercar" {{ $car->type == 'supercar' ? 'selected' : '' }}>Supercar</option>
-                                <option value="suv" {{ $car->type == 'suv' ? 'selected' : '' }}>SUV</option>
-                                <option value="luxury" {{ $car->type == 'luxury' ? 'selected' : '' }}>Luxury</option>
-                                <option value="motorbike" {{ $car->type == 'motorbike' ? 'selected' : '' }}>Motorbike</option>
+                            <label class="block text-gray-500 text-xs font-bold uppercase tracking-widest mb-2">Category</label>
+                            <select name="category" class="w-full bg-black border border-white/10 px-4 py-3 text-white focus:border-[var(--color-accent)] focus:ring-0 uppercase font-bold">
+                                <option value="supercar" {{ $car->category == 'supercar' ? 'selected' : '' }}>Supercar</option>
+                                <option value="suv" {{ $car->category == 'suv' ? 'selected' : '' }}>SUV</option>
+                                <option value="luxury" {{ $car->category == 'luxury' ? 'selected' : '' }}>Luxury</option>
+                                <option value="motorbike" {{ $car->category == 'motorbike' ? 'selected' : '' }}>Motorbike</option>
                             </select>
                         </div>
 
