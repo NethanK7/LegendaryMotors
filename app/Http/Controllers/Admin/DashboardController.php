@@ -19,6 +19,7 @@ class DashboardController extends Controller
             'revenue' => Allocation::whereIn('allocations.status', ['paid', 'reserved'])
                 ->join('cars', 'allocations.car_id', '=', 'cars.id')
                 ->sum('cars.price') ?? 0,
+            'deposits_collected' => Allocation::where('status', 'reserved')->count() * 5000,
         ];
 
         $recent_allocations = Allocation::with(['user', 'car'])->latest()->take(5)->get();
