@@ -22,26 +22,37 @@
                             Client Details
                         </h3>
 
-                        <form class="space-y-8">
+                        @if($errors->any())
+                            <div class="mb-8 p-4 bg-red-500/10 border border-red-500 text-red-500 font-bold uppercase text-xs tracking-widest">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form action="{{ route('payment.process') }}" method="POST" class="space-y-8">
+                            @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">First Name</label>
-                                    <input type="text" class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER FIRST NAME">
+                                    <input type="text" name="first_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER FIRST NAME">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Last Name</label>
-                                    <input type="text" class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER LAST NAME">
+                                    <input type="text" name="last_name" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER LAST NAME">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Email Address</label>
-                                <input type="email" class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER OFFICIAL EMAIL">
+                                <input type="email" name="email" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="ENTER OFFICIAL EMAIL">
                             </div>
 
                             <div>
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">Phone Number</label>
-                                <input type="tel" class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="+1 (000) 000-0000">
+                                <input type="tel" name="phone" required class="w-full bg-[#111] border-b border-white/10 text-white font-bold py-4 px-0 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-700 uppercase rounded-none" placeholder="+1 (000) 000-0000">
                             </div>
                             
                             <!-- Delivery Preference -->
@@ -52,14 +63,14 @@
                                 </h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <label class="cursor-pointer group">
-                                        <input type="radio" name="delivery" class="peer sr-only">
+                                        <input type="radio" name="delivery" value="collection" class="peer sr-only" required>
                                         <div class="p-6 border border-white/10 peer-checked:border-[var(--color-accent)] peer-checked:bg-white/5 transition-all group-hover:border-white/30">
                                             <span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Option 01</span>
                                             <span class="block font-black uppercase text-lg">Factory Collection</span>
                                         </div>
                                     </label>
                                     <label class="cursor-pointer group">
-                                        <input type="radio" name="delivery" class="peer sr-only">
+                                        <input type="radio" name="delivery" value="transport" class="peer sr-only">
                                         <div class="p-6 border border-white/10 peer-checked:border-[var(--color-accent)] peer-checked:bg-white/5 transition-all group-hover:border-white/30">
                                             <span class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Option 02</span>
                                             <span class="block font-black uppercase text-lg">Secure Transport</span>
@@ -69,7 +80,7 @@
                              </div>
 
                              <div class="pt-8">
-                                 <button type="button" class="w-full py-5 bg-[var(--color-accent)] text-white font-black uppercase tracking-[0.2em] border border-[var(--color-accent)] hover:bg-white hover:text-black hover:border-white transition-all duration-300 clip-angle">
+                                 <button type="submit" class="w-full py-5 bg-[var(--color-accent)] text-white font-black uppercase tracking-[0.2em] border border-[var(--color-accent)] hover:bg-white hover:text-black hover:border-white transition-all duration-300 clip-angle">
                                     Confirm Reservation
                                 </button>
                                 <p class="text-center text-[10px] text-gray-600 uppercase tracking-widest mt-6">

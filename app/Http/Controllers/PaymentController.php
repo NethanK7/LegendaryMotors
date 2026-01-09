@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller;
 
 class PaymentController extends Controller
 {
-    public function checkout()
+    public function process(Request $request)
     {
         if (!auth()->check()) {
             return redirect()->route('login');
@@ -22,11 +22,24 @@ class PaymentController extends Controller
             abort(403, 'Admins cannot perform purchases.');
         }
 
+        // Validate Checkout Form
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:50',
+            'last_name' => 'required|string|max:50',
+            'email' => 'required|email',
+            'phone' => 'required|string|max:20',
+            'delivery' => 'required|string|in:collection,transport',
+        ]);
+
         $config = Session::get('reservation_config');
 
         if (!$config) {
             return redirect()->route('inventory');
         }
+
+        // Merge form data into config for persistence
+        $config = array_merge($config, $validated);
+        Session::put('reservation_config', $config);
 
         try {
             Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -38,7 +51,7 @@ class PaymentController extends Controller
                         'currency' => 'usd',
                         'product_data' => [
                             'name' => 'Deposit for ' . $config['color'] . ' ' . Car::find($config['car_id'])->model,
-                            'description' => "Configuration: {$config['kit']} | {$config['rims']}",
+                            'description' => "Configuration: {$config['kit']} | {$config['rims']} | Delivery: " . ucfirst($validated['delivery']),
                         ],
                         'unit_amount' => 500000, 
                     ],

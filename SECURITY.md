@@ -15,12 +15,16 @@ This document outlines the security measures implemented in the **Legendary Moto
 ## 3. Data Protection & Input Sanitization
 - **SQL Injection Prevention**: We exclusively use **Eloquent ORM** for database interactions. Eloquent automatically binds parameters, preventing SQL injection vulnerabilities. Raw SQL queries are avoided.
 - **Cross-Site Request Forgery (CSRF)**: All POST/PUT/DELETE forms include the `@csrf` directive. Laravel's middleware automatically verifies the token for every state-changing request.
-- **Input Validation**: All incoming requests (Registration, Login, Car Creation) are validated using Laravel's `validate()` method or Form Requests, ensuring strict data integrity.
+- **Input Validation**: All incoming requests (Registration, Login, Car Creation, Contact Form, Checkout) are validated using Laravel's `validate()` method or Form Requests, ensuring strict data integrity. Special attention is paid to the **Contact** and **Checkout** forms to prevent malicious data entry.
 
 ## 4. Authorization
 - **Role-Based Access Control (RBAC)**: Custom middleware (`AdminMiddleware`) restricts administrative routes (Dashboard, Inventory Management) to users with the `is_admin` flag.
 - **Policy Enforcement**: Frontend interfaces (views) conditionally render elements based on user roles (e.g., Admins see "View Details" instead of "Configure").
 
-## 5. Deployment Security (Planned)
+## 5. Transaction Security
+- **Strict Method Enforcement**: Critical actions (Contact Submission, Payment Processing) are strictly enforced as `POST` requests. GET requests are never used for state-changing operations.
+- **Payment Flow**: The checkout process is protected by `auth` middleware and server-side session management. Form data is validated on the server before communicating with Stripe. Uses `Route::post('/payment/process')`.
+
+## 6. Deployment Security (Planned)
 - **HTTPS**: The application will be deployed on a platform enforcing SSL/HTTPS (e.g., Railway/Heroku).
 - **Environment Variables**: Sensitive credentials (DB passwords, Stripe Keys) are stored in `.env` and never committed to version control.

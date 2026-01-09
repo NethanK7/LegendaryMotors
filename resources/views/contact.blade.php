@@ -69,7 +69,14 @@
                 <div class="bg-gray-50 dark:bg-[#111] p-12 border border-gray-200 dark:border-white/5 relative shadow-xl dark:shadow-none transition-colors duration-300">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-[var(--color-accent)]/10 blur-3xl"></div>
                     
-                    <form>
+                    @if (session('status'))
+                        <div class="mb-8 p-4 bg-green-500/10 border border-green-500 text-green-500 font-bold uppercase text-xs tracking-widest">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
                         <div class="mb-12">
                             <h3 class="text-2xl font-black uppercase mb-2">Send Message</h3>
                             <p class="text-gray-500 text-xs font-bold uppercase tracking-widest">We respond within 24 hours</p>
@@ -77,32 +84,32 @@
 
                          <div class="mb-8">
                             <label class="block text-xs font-bold text-[var(--color-accent)] uppercase tracking-widest mb-2">Subject</label>
-                            <select class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors uppercase appearance-none">
-                                <option>General Inquiry</option>
-                                <option>Vehicle Purchase</option>
-                                <option>Service Request</option>
+                            <select name="subject" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors uppercase appearance-none">
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Vehicle Purchase">Vehicle Purchase</option>
+                                <option value="Service Request">Service Request</option>
                             </select>
                         </div>
                         
                         <div class="grid grid-cols-2 gap-8 mb-8">
                              <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">First Name</label>
-                                <input type="text" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="NAME">
+                                <input type="text" name="first_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="NAME">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Last Name</label>
-                                <input type="text" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="SURNAME">
+                                <input type="text" name="last_name" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="SURNAME">
                             </div>
                         </div>
 
                         <div class="mb-8">
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Email Address</label>
-                            <input type="email" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="EMAIL@EXAMPLE.COM">
+                            <input type="email" name="email" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="EMAIL@EXAMPLE.COM">
                         </div>
 
                         <div class="mb-12">
                             <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Message</label>
-                            <textarea rows="4" class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="TYPE YOUR MESSAGE..."></textarea>
+                            <textarea name="message" rows="4" required class="w-full bg-white dark:bg-black border border-gray-200 dark:border-white/10 text-black dark:text-white font-bold px-4 py-4 focus:outline-none focus:border-[var(--color-accent)] transition-colors placeholder-gray-400 dark:placeholder-gray-800 uppercase" placeholder="TYPE YOUR MESSAGE..."></textarea>
                         </div>
 
                         <button type="submit" class="w-full py-5 bg-[var(--color-accent)] text-white font-black uppercase tracking-[0.2em] border border-[var(--color-accent)] hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all duration-300">
