@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
 
     // Admin Routes
-    Route::middleware(['mid' => 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('cars', App\Http\Controllers\Admin\CarController::class);
     });
