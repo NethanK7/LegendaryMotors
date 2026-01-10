@@ -25,7 +25,7 @@ class AuthService {
       );
 
       final userData = response.data['user'];
-      final token = response.data['token'];
+      final token = response.data['access_token'];
 
       // Combine user info and token
       final userMap = Map<String, dynamic>.from(userData);
