@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../providers/auth_provider.dart';
 
@@ -23,6 +24,20 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             title: const Text('Biometrics'),
             trailing: Switch(value: false, onChanged: (val) {}),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('About Brabus'),
+            leading: const Icon(Icons.info_outline),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+            onTap: () => context.push('/about'),
+          ),
+          const Divider(),
+          ListTile(
+            title: const Text('Contact Concierge'),
+            leading: const Icon(Icons.chat_bubble_outline),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+            onTap: () => context.push('/contact'),
           ),
           const Divider(),
           ListTile(

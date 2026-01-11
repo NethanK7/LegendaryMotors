@@ -11,7 +11,10 @@ class ApiConstants {
   }
 
   static const String carsEndpoint = '/cars';
-  static const String loginEndpoint = '/login'; // Will need to implement this in Laravel
+  static const String loginEndpoint = '/login';
   static const String registerEndpoint = '/register';
   static const String userEndpoint = '/user';
+  static const String contactEndpoint = '/contact'; // NEW
+  static const String favoritesEndpoint = '/favorites'; // NEW
+  static const String checkoutEndpoint = '/checkout'; // NEW
 }

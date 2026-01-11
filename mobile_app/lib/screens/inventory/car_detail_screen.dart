@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../models/car.dart';
 
 class CarDetailScreen extends StatelessWidget {
   final int carId;
-  const CarDetailScreen({super.key, required this.carId});
+  final Car? car;
+  const CarDetailScreen({super.key, required this.carId, this.car});
 
   @override
   Widget build(BuildContext context) {
